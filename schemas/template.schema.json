@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/qa-automation-templates/template.schema.json",
+  "title": "QA Automation Template Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "template",
+    "technology",
+    "requirements",
+    "project"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "version",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+-[a-z0-9]+-[a-z0-9]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)$"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "technology": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "language",
+        "framework",
+        "type"
+      ],
+      "properties": {
+        "language": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+$"
+        },
+        "framework": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+$"
+        },
+        "type": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+$"
+        }
+      }
+    },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime",
+        "dependencies"
+      ],
+      "properties": {
+        "runtime": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "entry_point",
+        "install_command",
+        "test_command"
+      ],
+      "properties": {
+        "entry_point": {
+          "type": "string",
+          "minLength": 1
+        },
+        "install_command": {
+          "type": "string",
+          "minLength": 1
+        },
+        "test_command": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

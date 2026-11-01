@@ -1,0 +1,8 @@
+schema_version: "1.0"
+test_types:
+  - id: api
+    display_name: API
+  - id: e2e
+    display_name: End-to-End
+  - id: mobile
+    display_name: Mobile

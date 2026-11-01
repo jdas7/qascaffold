@@ -1,0 +1,34 @@
+schema_version: "1.0"
+
+# This file is the allow-list of supported combinations.
+# Add a combination here only after agreeing to maintain its template.
+frameworks:
+  - id: pytest
+    display_name: Pytest
+    language: python
+    supported_types: [api, e2e]
+
+  - id: appium
+    display_name: Appium
+    language: python
+    supported_types: [mobile]
+
+  - id: restassured
+    display_name: REST Assured
+    language: java
+    supported_types: [api]
+
+  - id: appium
+    display_name: Appium
+    language: java
+    supported_types: [mobile]
+
+  - id: playwright
+    display_name: Playwright
+    language: typescript
+    supported_types: [e2e]
+
+  - id: cypress
+    display_name: Cypress
+    language: typescript
+    supported_types: [e2e]

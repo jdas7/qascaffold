@@ -1,0 +1,8 @@
+schema_version: "1.0"
+languages:
+  - id: python
+    display_name: Python
+  - id: java
+    display_name: Java
+  - id: typescript
+    display_name: TypeScript
