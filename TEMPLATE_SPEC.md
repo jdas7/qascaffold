@@ -79,13 +79,18 @@ Never include real secrets. Provide `.env.example` with placeholders when needed
 
 ## 7. Compatibility
 
-The language/framework/type combination must be allowed by `registry/frameworks.yaml`. A new combination requires a registry change in `main` through a Pull Request before, or together with, the template proposal.
+The language/framework/type combination must be allowed by `registry/frameworks.yaml`. A new combination requires a registry change on `master` before the template branch is published.
+
+Every published branch is also listed in `registry/templates.yaml` with the same language, framework, and type. That inventory stays on `master`. The template branch contains only the test project.
 
 ## 8. Validation
+
+Validation runs from `master` with `python scripts/validate_template.py`. The script reads each published branch through git. It does not require the template branch to contain the validator, registries, or schemas.
 
 A template is publishable only when:
 - Its branch name is valid.
 - Its manifest passes the JSON Schema.
 - Branch and manifest identity match.
-- The combination is registered as supported.
-- Required files exist.
+- The combination is allowed by `registry/frameworks.yaml`.
+- The branch is listed in `registry/templates.yaml`.
+- Required files exist on that branch.

@@ -1,0 +1,9 @@
+schema_version: "1.0"
+
+# Published template branches. Add an entry here on master when a template
+# branch is created. The branch itself contains only the test project.
+templates:
+  - id: python-pytest-api
+    language: python
+    framework: pytest
+    type: api

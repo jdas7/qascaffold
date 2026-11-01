@@ -1,8 +1,8 @@
-name: Validate template
+name: Validate templates
 
 on:
-  pull_request:
-    branches: [main]
+  push:
+    branches: [master]
   workflow_dispatch:
 
 permissions:
@@ -10,15 +10,12 @@ permissions:
 
 jobs:
   validate:
-    # This repository uses PRs from template branches into main.
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout proposed template branch
+      - name: Checkout governance branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
-          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
-          fetch-depth: 1
+          ref: master
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,7 +25,5 @@ jobs:
       - name: Install validator dependencies
         run: python -m pip install -r scripts/requirements.txt
 
-      - name: Validate template
-        env:
-          TEMPLATE_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
-        run: python scripts/validate_template.py --branch "$TEMPLATE_BRANCH" --template-dir .
+      - name: Validate published template branches
+        run: python scripts/validate_template.py
