@@ -1,0 +1,23 @@
+schema_version: "1.0"
+
+template:
+  id: python-pytest-api
+  name: Python Pytest API
+  version: "1.0.0"
+  description: API test starter for the public PokeAPI Charmander resource using Python, Pytest, and Requests.
+
+technology:
+  language: python
+  framework: pytest
+  type: api
+
+requirements:
+  runtime: ">=3.11"
+  dependencies:
+    - pytest
+    - requests
+
+project:
+  entry_point: tests/
+  install_command: pip install -r requirements.txt
+  test_command: pytest
