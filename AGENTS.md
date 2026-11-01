@@ -10,7 +10,6 @@ Read:
 
 - `BRANCH_CONVENTION.md`
 - `TEMPLATE_SPEC.md`
-- `CONTRIBUTING.md`
 - Relevant files under `registry/`
 - `schemas/template.schema.json`
 
@@ -21,16 +20,18 @@ Read:
 3. Verify that the combination is explicitly allowed by `registry/frameworks.yaml`.
 4. Construct the exact branch name: `{language}-{framework}-{type}`.
 5. Check that the branch does not already exist. Never overwrite an existing template without explicit approval.
-6. Create the branch from the approved base and add the complete project at its root.
+6. Create a branch whose tree contains only the test project. Do not copy governance files (`scripts/`, `registry/`, `schemas/`, or repository docs) onto that branch.
 7. Add `template.yaml` at the repository root.
 8. Ensure `template.id` equals the branch name.
 9. Ensure `technology.language`, `technology.framework`, and `technology.type` match the three branch segments.
 10. Add a useful `README.md` with setup, configuration, and execution instructions.
-11. Run the validator and relevant project tests before proposing publication.
+11. On `master`, add the branch to `registry/templates.yaml` with the same language, framework, and type.
+12. From `master`, run `python scripts/validate_template.py --branch <name>` and the template's own tests before publication.
 
 ## Git safety
 
-- Never commit template project files directly to `main`.
+- Never commit template project files directly to `master`.
+- Publish a template by pushing its branch and registering it on `master`. Do not merge a template branch into `master`.
 - Never delete, rename, force-push, or overwrite an existing template branch without explicit approval.
 - Do not change unrelated template branches.
 - Do not put credentials, tokens, private keys, or real environment secrets in templates.

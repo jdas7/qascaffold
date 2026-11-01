@@ -22,37 +22,43 @@ Ejemplos:
 
 Cada rama de template debe contener un archivo `template.yaml` en su raíz. El nombre de la rama y los campos del manifiesto deben coincidir.
 
-## Contenido de `main`
+## Contenido de `master`
 
-`main` contiene:
+`master` contiene:
 - Convenciones y especificación.
 - Esquema JSON para validar `template.yaml`.
-- Registros de tecnologías permitidas.
-- Validador y workflow de GitHub Actions.
+- Registros de tecnologías permitidas y el inventario `registry/templates.yaml`.
+- Validador, listado de templates y workflow de GitHub Actions.
 - Ejemplos de manifiestos.
 
-Los proyectos de automatización se publican en ramas individuales, no en `main`.
+Los proyectos de automatización viven en ramas individuales. Esas ramas no incluyen el código de `master`. No se fusionan en `master`: el registro de la rama se actualiza aquí y la rama se publica por separado.
 
 ## Crear un template
 
 1. Lee `AGENTS.md`, `BRANCH_CONVENTION.md` y `TEMPLATE_SPEC.md`.
 2. Comprueba que la combinación está permitida en `registry/`.
-3. Crea una rama con el formato establecido.
-4. Construye un proyecto funcional en la raíz de esa rama.
-5. Añade `template.yaml` y `README.md`.
-6. Ejecuta `python scripts/validate_template.py --branch <nombre-de-rama>`.
-7. Abre un Pull Request hacia `main` siguiendo `CONTRIBUTING.md`.
+3. Crea una rama con el formato establecido y solo el proyecto de pruebas en su raíz.
+4. Añade `template.yaml`, `README.md` y `.gitignore`.
+5. En `master`, añade la rama a `registry/templates.yaml` con su lenguaje, framework y tipo.
+6. Desde `master`, ejecuta `python scripts/validate_template.py --branch <nombre-de-rama>`.
 
 ## Validación local
 
-Requiere Python 3.11+:
+Requiere Python 3.11+ y ejecutarse desde `master`:
 
 ```bash
 python -m pip install -r scripts/requirements.txt
+python scripts/list_templates.py
+python scripts/validate_template.py
+```
+
+`list_templates.py` muestra los frameworks que ya tienen una rama publicada. `validate_template.py` descarga las ramas de origin y comprueba cada entrada de `registry/templates.yaml`. Para una sola rama:
+
+```bash
 python scripts/validate_template.py --branch python-pytest-api
 ```
 
-El validador debe ejecutarse desde una copia local de la rama que se quiere validar. Para validación CI, el workflow descarga la rama origen del Pull Request y ejecuta el mismo validador.
+`--no-fetch` usa las referencias que ya están en el clon.
 
 ## Contrato para consumidores
 

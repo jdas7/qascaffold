@@ -1,25 +1,14 @@
-## Template information
+## Registry change
 
-- Branch name:
+- Template branch:
 - Language:
 - Framework:
 - Test type:
-- Runtime requirement:
 
-## Setup and execution
+## Checklist
 
-- Install command:
-- Test command:
-- External services/devices required:
-
-## Validation
-
-- [ ] Branch follows `language-framework-type`.
-- [ ] Combination is registered.
-- [ ] `template.yaml` is at the root.
-- [ ] Manifest identity matches the branch.
-- [ ] README and `.gitignore` are included.
-- [ ] At least one meaningful test is included.
-- [ ] No credentials or private test data are committed.
-- [ ] Local validation passed.
-- [ ] Template's own tests passed, or limitations are documented.
+- [ ] `registry/templates.yaml` lists the branch on `master`.
+- [ ] Language, framework, and type are allowed by the registries.
+- [ ] The template branch contains only the test project.
+- [ ] `python scripts/validate_template.py --branch <name> --no-fetch` passed from `master`.
+- [ ] This pull request does not merge the template project into `master`.
