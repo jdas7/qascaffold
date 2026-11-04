@@ -1,14 +1,14 @@
 schema_version: "1.0"
 
 template:
-  id: python-pytest-api
-  name: Python Pytest API
+  id: python-pytestbdd-api
+  name: Python Pytest BDD API
   version: "1.0.0"
   description: API test starter for the public PokeAPI Charmander resource using Python, Pytest, pytest-bdd, and Requests.
 
 technology:
   language: python
-  framework: pytest
+  framework: pytestbdd
   type: api
 
 requirements:
