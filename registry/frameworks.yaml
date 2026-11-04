@@ -8,6 +8,11 @@ frameworks:
     language: python
     supported_types: [api, e2e]
 
+  - id: pytestbdd
+    display_name: Pytest BDD
+    language: python
+    supported_types: [api]
+
   - id: appium
     display_name: Appium
     language: python
