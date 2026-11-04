@@ -7,7 +7,7 @@ templates:
     language: python
     framework: pytest
     type: api
-  - id: pytestbdd
+  - id: python-pytestbdd-api
     language: python
     framework: pytestbdd
     type: api
