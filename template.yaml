@@ -4,7 +4,7 @@ template:
   id: python-pytest-api
   name: Python Pytest API
   version: "1.0.0"
-  description: API test starter for the public PokeAPI Charmander resource using Python, Pytest, and Requests.
+  description: API test starter for the public PokeAPI Charmander resource using Python, Pytest, pytest-bdd, and Requests.
 
 technology:
   language: python
@@ -15,6 +15,7 @@ requirements:
   runtime: ">=3.11"
   dependencies:
     - pytest
+    - pytest-bdd
     - requests
 
 project:
